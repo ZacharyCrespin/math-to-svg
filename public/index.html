@@ -6,8 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Math To SVG</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
     body {
       text-align: center;
+      font-family: 'Inter', sans-serif;
     }
     .mainInput {
       margin: auto;
@@ -46,7 +48,7 @@
       if (math != "") {
         // Encode the math to a URI string
         const encodedMath = encodeURIComponent(math)
-        fetch(`/api/?math=${encodedMath}`)
+        fetch(`.netlify/functions/math?math=${encodedMath}`)
         .then((res) => res.text())
         .then((res) => {
           svgContent = res
