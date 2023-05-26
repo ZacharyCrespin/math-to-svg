@@ -1,0 +1,16 @@
+{
+  "name": "math-to-svg",
+  "version": "1.0.0",
+  "description": "Convert AsciiMath strings into beautiful SVGs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "keywords": [],
+  "author": "Zachary Crespin <contact@zacharyc.site> (https://zacharyc.site)",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mathjax-node": "^2.1.1"
+  }
+}

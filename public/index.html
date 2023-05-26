@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math To SVG</title>
+  <style>
+    body {
+      text-align: center;
+    }
+    .mainInput {
+      margin: auto;
+      max-width: 60ch;
+    }
+    .mainInput textarea {
+      width: 100%;
+      resize: vertical;
+    }
+    #output {
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Math To SVG</h1>
+  <p>Convert AsciiMath strings into beautiful SVGs</p>
+  <div class="mainInput">
+    <textarea id="input" placeholder="E = mc^2" spellcheck="false"></textarea>
+    <button id="button">Convert</button>
+  </div>
+  <div id="output"></div>
+  <button id="download" hidden>Download</button>
+  <p>Created By <a href="https://zacharyc.site" target="_blank">Zachary Crespin</a> on <a href="https://github.com/ZacharyCrespin/math-to-svg" target="_blank">GitHub</a>.</p>
+  <script>
+    // Get document elements
+    const input = document.getElementById("input")
+    const button = document.getElementById("button")
+    const outputDiv = document.getElementById("output")
+    const downloadBtn = document.getElementById("download")
+
+    let svgContent
+
+    function convert() {
+      const math = input.value
+      if (math != "") {
+        // Encode the math to a URI string
+        const encodedMath = encodeURIComponent(math)
+        fetch(`/api/?math=${encodedMath}`)
+        .then((res) => res.text())
+        .then((res) => {
+          svgContent = res
+          // Parse the SVG text into a DOM element
+          const parser = new DOMParser();
+          const svgElement = parser.parseFromString(res, 'image/svg+xml').documentElement;
+
+          // Make sure the output div is empty
+          outputDiv.innerHTML = ""
+          // Display the SVG
+          outputDiv.appendChild(svgElement)
+          downloadBtn.hidden = false
+        })
+      }
+    }
+    button.addEventListener("click", convert)
+
+    function download() {
+      // Create a Blob object from the SVG content
+      const svgBlob = new Blob([svgContent], { type: 'image/svg+xml' });
+
+      // Generate a URL for the Blob
+      const svgUrl = URL.createObjectURL(svgBlob);
+
+      // Create an anchor element for the download
+      const downloadLink = document.createElement('a');
+      downloadLink.href = svgUrl;
+      downloadLink.download = 'image.svg';
+      downloadLink.style.display = 'none';
+
+      // Append the anchor element to the document
+      document.body.appendChild(downloadLink);
+
+      // Trigger the download
+      downloadLink.click();
+
+      // Clean up the URL object
+      URL.revokeObjectURL(svgUrl);
+    }
+    downloadBtn.addEventListener('click', download);
+  </script>
+</body>
+</html>
