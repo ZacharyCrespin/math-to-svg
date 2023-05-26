@@ -25,15 +25,17 @@
   </style>
 </head>
 <body>
-  <h1>Math To SVG</h1>
-  <p>Convert AsciiMath strings into beautiful SVGs</p>
-  <div class="mainInput">
-    <textarea id="input" placeholder="E = mc^2" spellcheck="false"></textarea>
-    <button id="button">Convert</button>
-  </div>
-  <div id="output"></div>
-  <button id="download" hidden>Download</button>
-  <p>Created By <a href="https://zacharyc.site" target="_blank">Zachary Crespin</a> on <a href="https://github.com/ZacharyCrespin/math-to-svg" target="_blank">GitHub</a>.</p>
+  <main>
+    <h1>Math To SVG</h1>
+    <p>Convert AsciiMath strings into beautiful SVGs</p>
+    <div class="mainInput">
+      <textarea id="input" placeholder="E = mc^2" spellcheck="false"></textarea>
+      <button id="button">Convert</button>
+    </div>
+    <div id="output"></div>
+    <button id="download" hidden>Download</button>
+    <p>Created By <a href="https://zacharyc.site" target="_blank">Zachary Crespin</a> on <a href="https://github.com/ZacharyCrespin/math-to-svg" target="_blank">GitHub</a>.</p>
+  </main>
   <script>
     // Get document elements
     const input = document.getElementById("input")
@@ -48,7 +50,7 @@
       if (math != "") {
         // Encode the math to a URI string
         const encodedMath = encodeURIComponent(math)
-        fetch(`.netlify/functions/math?math=${encodedMath}`)
+        fetch(`/api?math=${encodedMath}`)
         .then((res) => res.text())
         .then((res) => {
           svgContent = res
