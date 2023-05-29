@@ -1,4 +1,4 @@
 node_modules
-# Local Netlify folder
 .netlify
 public/index.html
+public/404.html

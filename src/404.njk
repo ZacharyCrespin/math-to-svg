@@ -1,0 +1,28 @@
+---
+buttonText: Back Home
+buttonLink: https://zacharyc.site
+permalink: "404.html"
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html dir="ltr" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <title>404 - Page Not Found</title>
+  <meta content="Not Found" name="description">
+  <meta name="color-scheme" content="light dark">
+  <meta name="generator" content="{{ eleventy.generator }}">
+  <style>
+    {% include "./style.css" %}
+  </style>
+</head>
+<body>
+  <main>
+    <h1 class="title">Page Not Found</h1>
+    <p>This page does not exist.</p>
+    <a href="{{ buttonLink }}" class="button">{{ buttonText }}</a>
+  </main>
+  <script async src="https://analytics.zacharyc.site/tracker.js" data-ackee-server="https://analytics.zacharyc.site" data-ackee-domain-id="010f26e9-05e1-41f5-86df-c0f7d3cc752e"></script>
+</body>
+</html>
