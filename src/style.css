@@ -15,6 +15,7 @@
     local('Inter'),
     url('fonts/Inter.woff2') format('woff2'),
     url('fonts/Inter.ttf') format('truetype');
+  font-display: swap;
 }
 
 body {
