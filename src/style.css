@@ -54,14 +54,11 @@ a {
   color: var(--black);
 }
 
-.mainInput {
-  margin: auto;
+#input {
+  margin: 0.5rem auto;
   max-width: 60ch;
-  width: calc(100% - 2rem);
-}
-
-.mainInput textarea {
-  width: calc(100% - 2rem);
+  min-height: 2ex;
+  width: calc(100% - 4rem);
   resize: vertical;
 }
 
