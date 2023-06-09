@@ -8,7 +8,8 @@
   "license": "GPL-3.0",
   "scripts": {
     "build": "eleventy",
-    "start": "eleventy --serve"
+    "start": "eleventy --serve",
+    "dev": "netlify dev"
   },
   "dependencies": {
     "mathjax-node": "^2.1.1"
