@@ -5,10 +5,12 @@ const outputDiv = document.getElementById("output")
 const downloadBtn = document.getElementById("download")
 
 let svgContent
+let lastInput = ""
 
 function convert() {
   const math = input.value
-  if (math != "") {
+  if (math != "" && math != lastInput) {
+    lastInput = math
     // Encode the math to a URI string
     const encodedMath = encodeURIComponent(math)
     fetch(`/api?math=${encodedMath}`)
@@ -23,11 +25,18 @@ function convert() {
       outputDiv.innerHTML = ""
       // Display the SVG
       outputDiv.appendChild(svgElement)
+      outputDiv.hidden = false
       downloadBtn.hidden = false
+      button.disabled = false
     })
+  } else {
+    button.disabled = false
   }
 }
-button.addEventListener("click", convert)
+button.addEventListener("click", () => {
+  button.disabled = true
+  convert()
+})
 
 function download() {
   // Create a Blob object from the SVG content

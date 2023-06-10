@@ -13,8 +13,8 @@
   font-family: Inter;
   src: 
     local('Inter'),
-    url('fonts/Inter.woff2') format('woff2'),
-    url('fonts/Inter.ttf') format('truetype');
+    url('/fonts/Inter.woff2') format('woff2'),
+    url('/fonts/Inter.ttf') format('truetype');
   font-display: swap;
 }
 
@@ -48,6 +48,15 @@ button:hover {
   background-color: var(--black);
   color: var(--white);
   transform: scale(1.05);
+}
+button:disabled {
+  opacity: 70%;
+}
+button:disabled:hover {
+  cursor: default;
+  background-color: var(--white);
+  color: var(--black);
+  transform: scale(1);
 }
 
 a {
