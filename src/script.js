@@ -8,6 +8,7 @@ let svgContent
 let lastInput = ""
 
 function convert() {
+  button.disabled = true
   const math = input.value
   if (math != "" && math != lastInput) {
     lastInput = math
@@ -33,10 +34,7 @@ function convert() {
     button.disabled = false
   }
 }
-button.addEventListener("click", () => {
-  button.disabled = true
-  convert()
-})
+button.addEventListener("click", convert)
 
 function download() {
   // Create a Blob object from the SVG content
