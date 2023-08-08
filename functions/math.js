@@ -1,15 +1,12 @@
 const mj = require("mathjax-node");
-const querystring = require('querystring');
 
 exports.handler = function(event, context, callback) {
   mj.start();
 
   const { queryStringParameters } = event;
-
-  let math = queryStringParameters.math;
+  const math = queryStringParameters.math;
 
   if (math) {
-    math = querystring.unescape(math);
     mj.typeset({
       math,
       format: "AsciiMath",
